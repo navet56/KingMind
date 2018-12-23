@@ -21,7 +21,7 @@ def deroule():
     msg =Toplevel() 
     Message(msg, width =200, aspect =100, justify =CENTER, 
         text ='''WIP''').pack(padx =15, pady =10)
-
+gagner=0
 couleurs = ['red', 'blue', 'green','purple', 'orange', 'yellow']
 cm1 =  choice(couleurs)
 cm2 =  choice(couleurs)
@@ -29,10 +29,18 @@ cm3 =  choice(couleurs)
 cm4 =  choice(couleurs)
 cm5 =  choice(couleurs)
 
+couleurvariable='white'
 
+def interactioncouleur(event):
+	x,y = event.x,event.y
+	if x==(20,60) &y==(30,70):
+		couleurchoisie='red'
+		couleurvariable=couleurchoisie
+	else:
+		couleurvariable='white'
 
-def partie():
-	
+def partie(interactioncouleur):
+
 	can.create_oval(20, 30, 60, 70, fill='red', outline='white')#40 de diametre
 	can.create_oval(20, 70, 60, 110, fill='green', outline='white')
 	can.create_oval(20, 110, 60, 150, fill='blue', outline='white')
@@ -40,14 +48,14 @@ def partie():
 	can.create_oval(20, 190, 60, 230, fill='purple', outline='white')
 	can.create_oval(20, 230, 60, 270, fill='orange', outline='white')
 
-	can.create_oval(90, 30, 130, 70, fill='white', outline='white')
-	can.create_oval(90, 80, 130, 120, fill='white', outline='white')
-	can.create_oval(90, 130, 130, 170, fill='white', outline='white')
-	can.create_oval(90, 180, 130, 220, fill='white', outline='white')
-	can.create_oval(90, 230, 130, 270, fill='white', outline='white')
-	can.create_oval(90, 280, 130, 320, fill='white', outline='white')
-	can.create_oval(90, 330, 130, 370, fill='white', outline='white')
-	can.create_oval(90, 380, 130, 420, fill='white', outline='white')
+	can.create_oval(90, 30, 130, 70, fill=couleurvariable, outline='white')
+	can.create_oval(90, 80, 130, 120, fill=couleurvariable, outline='white')
+	can.create_oval(90, 130, 130, 170, fill=couleurvariable, outline='white')
+	can.create_oval(90, 180, 130, 220, fill=couleurvariable, outline='white')
+	can.create_oval(90, 230, 130, 270, fill=couleurvariable, outline='white')
+	can.create_oval(90, 280, 130, 320, fill=couleurvariable, outline='white')
+	can.create_oval(90, 330, 130, 370, fill=couleurvariable, outline='white')
+	can.create_oval(90, 380, 130, 420, fill=couleurvariable, outline='white')
 
 	can.create_oval(140, 30, 180, 70, fill='white', outline='white')
 	can.create_oval(140, 80, 180, 120, fill='white', outline='white')
@@ -94,10 +102,10 @@ def partie():
 	can.create_text(210, 459, text="Solution",fill="white")
 
 def nouvellePartie():
-	can.delete(fenetre,partie)
-	partie()
-def montrercombinaisonmagique():
+	can.delete(ALL)
+	partie(interactioncouleur)
 
+def montrercombinaisonmagique():
 	can.create_oval(290, 480, 330, 520, fill=cm1, outline='white')
 	can.create_oval(240, 480, 280, 520, fill=cm2, outline='white')
 	can.create_oval(190, 480, 230, 520, fill=cm3, outline='white')
@@ -121,6 +129,7 @@ def menu(win):
     O.add_command(label='Quitter le jeu',command=quitter,underline=0)
 
 def gagne():
+	gagner=1
 	can.create_text(400, 600, text="Bravo ! Tu as trouve la combinaison !",fill="white")
 	montrercombinaisonmagique()
 
@@ -133,7 +142,6 @@ menu(fenetre)
 
 can=Canvas(fenetre,height=800,width=600, bg='black') 
 can.grid(row=0,column=0)
-
 fenetre.config(bg="black") 
 fenetre.mainloop()
 fenetre.destroy() 
