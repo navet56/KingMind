@@ -46,8 +46,15 @@ fenetre=Tk()
 fenetre.title('KingMind Alpha build') 
 menu(fenetre)
 
-can=Canvas(fenetre,height=800,width=600, bg='dark green') 
+can=Canvas(fenetre,height=800,width=600, bg='black') 
 can.grid(row=1,column=0)
+can.create_oval(20, 30, 60, 70, fill='red', outline='white')
+can.create_oval(20, 70, 60, 110, fill='green', outline='white')
+can.create_oval(20, 110, 60, 150, fill='blue', outline='white')
+can.create_oval(20, 150, 60, 190, fill='yellow', outline='white')
+can.create_oval(20, 190, 60, 230, fill='purple', outline='white')
+can.create_oval(20, 230, 60, 270, fill='orange', outline='white')
+
 
 fenetre.config(bg="brown") 
 fenetre.mainloop()
