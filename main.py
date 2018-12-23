@@ -125,15 +125,33 @@ def gagne():
 	montrercombinaisonmagique()
 
 def quitter(): 
+    ans=askokcancel('KINGMIND',"Vraiment , On fait la belle ?") 
+    if ans:
 	fenetre.quit()
 
+clicsouris=0
+
+def mouseDown( event):
+	X,Y=event.x,event.y
+	if X==(20,60)&Y==(30,70):
+		rouge=1
+		if X==(25,100):
+			can.create_oval(90, 30, 130, 70, fill='red', outline='white')
+
+def mouseUp( event):
+    global selObject,clicsouris
+    if clicsouris==1: #si la fonction <clic> de la souris est activee...
+        can.itemconfig(selObject,width=2) # le contour de l'objet selectionne revient a son epaisseur initiale
+    if clicsouris==0: #si la fonction <clic> de la souris n'est pas activee...
+        selObject=None
 fenetre=Tk()
 fenetre.title('KingMind Alpha build') 
 menu(fenetre)
 bkg = PhotoImage(file='bkg.gif')
 can=Canvas(fenetre,height=800,width=500, bg='black') 
 can.grid(row=0,column=0)
-
+fenetre.bind("<Button-1>", ) # commandes avec le clic gauche de la souris, lorsqu'il est enfonce
+fenetre.bind("<Button1-ButtonRelease>", mouseUp)
 imageboite()
 
 fenetre.config(bg="black") 
