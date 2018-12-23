@@ -2,6 +2,7 @@ from Tkinter import *
 from math import *	
 from random import *
 from PIL import ImageTk, Image
+from tkMessageBox import askokcancel 
 
 def aPropos(): 
     msg =Toplevel() 
@@ -125,7 +126,7 @@ def gagne():
 	montrercombinaisonmagique()
 
 def quitter(): 
-    ans=askokcancel('KINGMIND',"Vraiment , On fait la belle ?") 
+    ans=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") 
     if ans:
 	fenetre.quit()
 
@@ -133,6 +134,7 @@ clicsouris=0
 
 def mouseDown( event):
 	X,Y=event.x,event.y
+	clicsouris=1
 	if X==(20,60)&Y==(30,70):
 		rouge=1
 		if X==(25,100):
@@ -140,10 +142,11 @@ def mouseDown( event):
 
 def mouseUp( event):
     global selObject,clicsouris
-    if clicsouris==1: #si la fonction <clic> de la souris est activee...
-        can.itemconfig(selObject,width=2) # le contour de l'objet selectionne revient a son epaisseur initiale
-    if clicsouris==0: #si la fonction <clic> de la souris n'est pas activee...
+    if clicsouris==1:
+        can.itemconfig(selObject,width=2) 
+    if clicsouris==0: 
         selObject=None
+
 fenetre=Tk()
 fenetre.title('KingMind Alpha build') 
 menu(fenetre)
