@@ -1,6 +1,7 @@
 from Tkinter import * 
 from math import *	
 from random import *
+from PIL import ImageTk, Image
 
 def aPropos(): 
     msg =Toplevel() 
@@ -21,6 +22,7 @@ def deroule():
     msg =Toplevel() 
     Message(msg, width =200, aspect =100, justify =CENTER, 
         text ='''WIP''').pack(padx =15, pady =10)
+
 gagner=0
 couleurs = ['red', 'blue', 'green','purple', 'orange', 'yellow']
 cm1 =  choice(couleurs)
@@ -31,16 +33,11 @@ cm5 =  choice(couleurs)
 
 couleurvariable='white'
 
-def interactioncouleur(event):
-	x,y = event.x,event.y
-	if x==(20,60) &y==(30,70):
-		couleurchoisie='red'
-		couleurvariable=couleurchoisie
-	else:
-		couleurvariable='white'
+def imageboite(): 
+	can.create_image(250, 450, image=bkg)
 
 def partie(interactioncouleur):
-
+	can.delete(imageboite)
 	can.create_oval(20, 30, 60, 70, fill='red', outline='white')#40 de diametre
 	can.create_oval(20, 70, 60, 110, fill='green', outline='white')
 	can.create_oval(20, 110, 60, 150, fill='blue', outline='white')
@@ -98,13 +95,16 @@ def partie(interactioncouleur):
 	can.create_oval(190, 480, 230, 520, fill='white', outline='white')
 	can.create_oval(140, 480, 180, 520, fill='white', outline='white')
 	can.create_oval(90, 480, 130, 520, fill='white', outline='white')
-
 	can.create_text(210, 459, text="Solution",fill="white")
 
 def nouvellePartie():
 	can.delete(ALL)
 	partie(interactioncouleur)
-
+def interactioncouleur(event):
+	x,y = event.x,event.y
+	if x>20 & x<60 :
+		couleurvariable='red'
+		can.create_oval(90, 30, 130, 70, fill=couleurvariable, outline='white')
 def montrercombinaisonmagique():
 	can.create_oval(290, 480, 330, 520, fill=cm1, outline='white')
 	can.create_oval(240, 480, 280, 520, fill=cm2, outline='white')
@@ -139,9 +139,12 @@ def quitter():
 fenetre=Tk()
 fenetre.title('KingMind Alpha build') 
 menu(fenetre)
-
-can=Canvas(fenetre,height=800,width=600, bg='black') 
+bkg = PhotoImage(file='bkg.gif')
+can=Canvas(fenetre,height=800,width=500, bg='black') 
 can.grid(row=0,column=0)
+
+imageboite()
+
 fenetre.config(bg="black") 
 fenetre.mainloop()
 fenetre.destroy() 
