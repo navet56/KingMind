@@ -1,7 +1,6 @@
 from Tkinter import * 
 from math import *	
-from random import randrange
-from tkMessageBox import askokcancel 
+from random import *
 
 def aPropos(): 
     msg =Toplevel() 
@@ -22,6 +21,15 @@ def deroule():
     msg =Toplevel() 
     Message(msg, width =200, aspect =100, justify =CENTER, 
         text ='''WIP''').pack(padx =15, pady =10)
+
+couleurs = ['red', 'blue', 'green','purple', 'orange', 'yellow']
+cm1 =  choice(couleurs)
+cm2 =  choice(couleurs)
+cm3 =  choice(couleurs)
+cm4 =  choice(couleurs)
+cm5 =  choice(couleurs)
+
+
 
 def partie():
 	
@@ -88,6 +96,13 @@ def partie():
 def nouvellePartie():
 	can.delete(fenetre,partie)
 	partie()
+def montrercombinaisonmagique():
+
+	can.create_oval(290, 480, 330, 520, fill=cm1, outline='white')
+	can.create_oval(240, 480, 280, 520, fill=cm2, outline='white')
+	can.create_oval(190, 480, 230, 520, fill=cm3, outline='white')
+	can.create_oval(140, 480, 180, 520, fill=cm4, outline='white')
+	can.create_oval(90, 480, 130, 520, fill=cm5, outline='white')
 
 def menu(win):
     "Barre de menu"
@@ -104,6 +119,10 @@ def menu(win):
     top.add_cascade(label='Options',menu=O,underline=0)
     O.add_command(label='A propos',command=aPropos,underline=0)
     O.add_command(label='Quitter le jeu',command=quitter,underline=0)
+
+def gagne():
+	can.create_text(400, 600, text="Bravo ! Tu as trouve la combinaison !",fill="white")
+	montrercombinaisonmagique()
 
 def quitter(): 
 	fenetre.quit()
