@@ -16,7 +16,9 @@ Version Alpha 0.1''').pack(padx =15, pady =10)
 def presentation(): 
     msg =Toplevel() 
     Message(msg, width =200, aspect =100, justify =CENTER, 
-        text ='''WIP''').pack(padx =15, pady =10)
+        text ='''----Presentation du jeu----
+Le but du jeu est de trouver la combinaison magique choisie par l'ordinateur.
+Selectionne parmis 6 couleurs puis l'ordinateur te dira, grace a des ronds noirs ou blancs la proximite avec la bonne combinaison.''').pack(padx =15, pady =10)
 
 def deroule(): 
     msg =Toplevel() 
@@ -29,7 +31,7 @@ cm1 =  choice(couleurs)
 cm2 =  choice(couleurs)
 cm3 =  choice(couleurs)
 cm4 =  choice(couleurs)
-cm5 =  choice(couleurs)
+
 
 couleurvariable='white'
 
@@ -81,21 +83,11 @@ def partie(interactioncouleur):
 	can.create_oval(240, 330, 280, 370, fill='white', outline='white')
 	can.create_oval(240, 380, 280, 420, fill='white', outline='white')
 
-	can.create_oval(290, 30, 330, 70, fill='white', outline='white')
-	can.create_oval(290, 80, 330, 120, fill='white', outline='white')
-	can.create_oval(290, 130, 330, 170, fill='white', outline='white')
-	can.create_oval(290, 180, 330, 220, fill='white', outline='white')
-	can.create_oval(290, 230, 330, 270, fill='white', outline='white')
-	can.create_oval(290, 280, 330, 320, fill='white', outline='white')
-	can.create_oval(290, 330, 330, 370, fill='white', outline='white')
-	can.create_oval(290, 380, 330, 420, fill='white', outline='white')
-
-	can.create_oval(290, 480, 330, 520, fill='white', outline='white')
 	can.create_oval(240, 480, 280, 520, fill='white', outline='white')
 	can.create_oval(190, 480, 230, 520, fill='white', outline='white')
 	can.create_oval(140, 480, 180, 520, fill='white', outline='white')
 	can.create_oval(90, 480, 130, 520, fill='white', outline='white')
-	can.create_text(210, 459, text="Solution",fill="white")
+	can.create_text(180, 459, text="Solution",fill="white")
 
 def nouvellePartie():
 	can.delete(ALL)
@@ -106,11 +98,10 @@ def interactioncouleur(event):
 		couleurvariable='red'
 		can.create_oval(90, 30, 130, 70, fill=couleurvariable, outline='white')
 def montrercombinaisonmagique():
-	can.create_oval(290, 480, 330, 520, fill=cm1, outline='white')
-	can.create_oval(240, 480, 280, 520, fill=cm2, outline='white')
-	can.create_oval(190, 480, 230, 520, fill=cm3, outline='white')
-	can.create_oval(140, 480, 180, 520, fill=cm4, outline='white')
-	can.create_oval(90, 480, 130, 520, fill=cm5, outline='white')
+	can.create_oval(240, 480, 280, 520, fill=cm1, outline='white')
+	can.create_oval(190, 480, 230, 520, fill=cm2, outline='white')
+	can.create_oval(140, 480, 180, 520, fill=cm3, outline='white')
+	can.create_oval(90, 480, 130, 520, fill=cm4, outline='white')
 
 def menu(win):
     "Barre de menu"
