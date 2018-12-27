@@ -1,0 +1,30 @@
+A LIRE POUR INSTALLER KINGMIND :
+
+-------Windows-----------------
+
+Installez Python 2.7.15 ici : https://www.python.org/ftp/python/2.7.15/python-2.7.15.msi
+
+Installez egalement Tkinter pour Pyhton 2.7 et PIL
+
+Ensuite téléchargez IDLE qui est l'environnement de veloppement officiel de Python. (IDLE Python 2.7)
+
+Ouvrez main.py avec IDLE
+
+Appuyez sur F5 pour lancer KingMind
+
+
+
+-----Linux------------
+
+Ouvrez un terminal dans le dossier KIngMind et faite : ./Start.sh
+
+-----Mac-------------
+
+TO DO
+
+
+
+
+
+Bon jeu !
+

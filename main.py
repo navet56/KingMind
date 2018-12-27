@@ -41,6 +41,24 @@ def imageboite():
 
 def partie(interactioncouleur):
 	can.delete(imageboite)
+	global C,CC,CCC,S,RR,couleurs,clicsouris,chiffres,prop,propo
+	global xC,yC,xCC,yCC,xRR,yRR,xS,yS
+	r=15
+	clicsouris=0 
+	max_propositions=int(a) 
+	prop=[0]*4 #creation d'une liste pour recueillir la couleur choisie pour chaque case de la proposition
+	propo=[0]*4 #creation d'une liste pour recueillir les couleurs de la proposition dans la zone de jeu
+	can.delete(ALL)	
+	chiffres=[0]*len(couleurs) #creation d'une liste de chiffres de <len(couleurs> elements
+	for i in range(0,len(couleurs)):chiffres[i]=couleurs.index(couleurs[i])+1 #creation d'une liste affectant un chiffre a chaque couleur
+	xC,yC=25,[125+50*i for i in range(0,6)] #coordonnees des centres des cercles
+	C=[can.create_oval(xC-r,yC[i]-r,xC+r,yC[i]+r,width=2,fill=couleurs[i])for i in range(0,6)] #creation des cercles de la zone des couleurs
+	xCC,yCC=[225+50*i for i in range(0,4)],[125+50*j for j in range(0,6)] #coordonnees des centres des cercles gris de la zone de jeu
+	CC=[can.create_oval(xCC[i]-r,yCC[j]-r,xCC[i]+r,yCC[j]+r,width=2,fill="grey")for j in range(0,6)for i in range(0,4)] #creation des cercles
+	xRR,yRR=[560+20*i for i in range(0,4)],[125+50*j for j in range(0,max_propositions)] #coordonnees des coins des traits gris de la zone de reponse
+	RR=[can.create_rectangle(xRR[i],yRR[j]-r,xRR[i]+5,yRR[j]+r,width=1,fill="grey",outline="black")for j in range(0,6)for i in range(0,4)] #creation des traits 
+	jouer()
+
 	can.create_oval(20, 30, 60, 70, fill='red', outline='white')#40 de diametre
 	can.create_oval(20, 70, 60, 110, fill='green', outline='white')
 	can.create_oval(20, 110, 60, 150, fill='blue', outline='white')
@@ -129,8 +147,6 @@ def quitter():
     ans=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") 
     if ans:
 	fenetre.quit()
-
-clicsouris=0
 
 def mouseDown( event):
 	X,Y=event.x,event.y
