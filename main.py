@@ -45,7 +45,7 @@ def partie(interactioncouleur):
 	global xC,yC,xCC,yCC,xRR,yRR,xS,yS
 	r=15
 	clicsouris=0 
-	max_propositions=int(a) 
+	max_propositions=6 
 	prop=[0]*4 #creation d'une liste pour recueillir la couleur choisie pour chaque case de la proposition
 	propo=[0]*4 #creation d'une liste pour recueillir les couleurs de la proposition dans la zone de jeu
 	can.delete(ALL)	
