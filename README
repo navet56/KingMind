@@ -6,7 +6,7 @@ Installez Python 2.7.15 ici : https://www.python.org/ftp/python/2.7.15/python-2.
 
 Installez egalement Tkinter pour Pyhton 2.7 et PIL
 
-Ensuite téléchargez IDLE qui est l'environnement de veloppement officiel de Python. (IDLE Python 2.7)
+Ensuite téléchargez IDLE qui est l'environnement de deloppement officiel de Python. (IDLE Python 2.7)
 
 Ouvrez main.py avec IDLE
 
@@ -20,8 +20,13 @@ Ouvrez un terminal dans le dossier KIngMind et faite : ./Start.sh
 
 -----Mac-------------
 
-TO DO
+Installer Python 3.X ou 2.X (si ça marche sur python 3.x)
 
+Installer Pillow pour python 3 ou 2 :(pour python3:pip3 install pillow, python2:pip install pillow )dans les commandes
+
+Ouvrez main.py avec IDLE
+
+Appuyez sur F5 pour lancer KingMind
 
 
 
