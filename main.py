@@ -19,7 +19,7 @@ def presentation():
     Message(msg, width =200, aspect =100, justify =CENTER, 
         text ='''----Presentation du jeu----
 Le but du jeu est de trouver la combinaison magique choisie par l'ordinateur.
-Selectionne parmis 6 couleurs puis l'ordinateur te dira, grace a des ronds noirs ou blancs la proximite avec la bonne combinaison.''').pack(padx =15, pady =10)
+Selectionne parmis 6 couleurs puis l'ordinateur te dira, grace a des ronds rouges ou blancs la proximite avec la bonne combinaison.''').pack(padx =15, pady =10)
 
 def deroule(): 
     msg =Toplevel() 
