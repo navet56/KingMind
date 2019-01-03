@@ -2,7 +2,7 @@ from Tkinter import *
 from math import *	
 from random import *
 from PIL import ImageTk, Image
-from tkMessageBox import askokcancel 
+from tkMessageBox import askokcancel
 
 def aPropos(): 
     msg =Toplevel() 
@@ -45,7 +45,7 @@ def partie(interactioncouleur):
 	global xC,yC,xCC,yCC,xRR,yRR,xS,yS
 	r=15
 	clicsouris=0 
-	max_propositions=int(a) 
+	max_propositions=5
 	prop=[0]*4 #creation d'une liste pour recueillir la couleur choisie pour chaque case de la proposition
 	propo=[0]*4 #creation d'une liste pour recueillir les couleurs de la proposition dans la zone de jeu
 	can.delete(ALL)	
@@ -144,11 +144,11 @@ def gagne():
 	montrercombinaisonmagique()
 
 def quitter(): 
-    ans=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") 
-    if ans:
-	fenetre.quit()
+    reponse=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") 
+    if reponse:
+        fenetre.quit()
 
-def mouseDown( event):
+def mouseDown(event):
 	X,Y=event.x,event.y
 	clicsouris=1
 	if X==(20,60)&Y==(30,70):
