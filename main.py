@@ -23,11 +23,11 @@ License GNU GPL V3
 Version Alpha 0.1''').pack(padx =15, pady =10)
 
 def imageboite(): 
-	plateau.create_image(50, 100, image=bkg)
+	plateau.create_image(200, 350, image=bkg)
 
 def presentation(): 
     msg =Toplevel() 
-    Message(msg, width =200, aspect =100, justify =CENTER, 
+    Message(msg, width =200, aspect =150, justify =CENTER, 
         text ='''----Presentation du jeu----
 Le but du jeu est de trouver la combinaison magique choisie par l'ordinateur.
 Selectionne parmis 6 couleurs puis l'ordinateur te dira, grace a des ronds rouges ou blancs la proximite avec la bonne combinaison.''').pack(padx =15, pady =10)
@@ -115,7 +115,7 @@ def quitter():
         
 fenetre= Tk()
 fenetre.title('KingMind 2.0')
-plateau = Canvas(fenetre, width =300, height =400, bg = 'black' )
+plateau = Canvas(fenetre, height =700,width=400, bg = 'black' )
 plateau.pack(side =LEFT, padx =5, pady =5)
 essai()
 menu(fenetre)
