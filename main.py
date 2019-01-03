@@ -146,7 +146,7 @@ def gagne():
 def quitter(): 
     ans=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") 
     if ans:
-	fenetre.quit()
+        fenetre.quit()
 
 def mouseDown( event):
 	X,Y=event.x,event.y
