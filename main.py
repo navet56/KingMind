@@ -9,7 +9,7 @@ from tkMessageBox import askokcancel
 
 colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']        # Liste des couleurs disponibles
 finalList = []        # Liste = La combinaison de couleurs à deviner 
-cercleCoord = []        # Liste, de listes  = coordonnées des 5 cercles, d'un essai   
+cercleCoord = []        # Liste, de listes  = coordonnées des 4 cercles, d'un essai   
 nbClic = 0        # gestion du nombre de "clic gauche souris", utilisée pour sélectionner une couleur
 num = 1
 def aPropos(): 
@@ -88,11 +88,10 @@ def jouer():
         plateau.delete(ALL)
 	choiceColor(num)        # appelle la mise en place des cercles qui seront colorés par: color(event)
 	tirage()
-def essai():
-	essaiBouton = Button(fenetre, text = ("Essai")) #command=creercercle)        
-        essaiBouton.pack(padx=3, pady=3)
 
-def creercercle():
+
+
+def creercercles():
 	global num
         num = num+1
 	for i in range (4):
@@ -116,8 +115,9 @@ def quitter():
 fenetre= Tk()
 fenetre.title('KingMind 2.0')
 plateau = Canvas(fenetre, height =700,width=400, bg = 'black' )
-plateau.pack(side =LEFT, padx =5, pady =5)
-essai()
+plateau.pack(side =RIGHT, padx =0, pady =10)
+essaiBouton = Button(fenetre, text = ("Essai"), command =creercercles)        
+essaiBouton.pack(side=TOP, padx=10, pady=0)
 menu(fenetre)
 bkg = PhotoImage(file='bkg.gif')
 imageboite()
