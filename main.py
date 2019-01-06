@@ -12,6 +12,7 @@ finalList = []        # Liste = La combinaison de couleurs à deviner
 cercleCoord = []        # Liste, de listes  = coordonnées des 4 cercles, d'un essai   
 nbClic = 0        # gestion du nombre de "clic gauche souris", utilisée pour sélectionner une couleur
 num = 1
+jouer = False
 def aPropos(): 
     msg =Toplevel() 
     Message(msg, width=200, aspect=200, justify=CENTER, 
@@ -20,7 +21,7 @@ Par Evan Diberder, Mael Le Boulicaut, Kilian Buan et Julian Goumida
 Tk version 8.4
 Python 2.7
 License GNU GPL V3
-Version Alpha 0.1''').pack(padx =15, pady =10)
+Version Alpha 0.2''').pack(padx =15, pady =10)
 
 def imageboite(): 
 	plateau.create_image(200, 350, image=bkg)
@@ -43,6 +44,7 @@ def menu(fenetre):
     J=Menu(top)
     top.add_cascade(label='Jeu',menu=J,underline=0)
     J.add_command(label='Nouvelle partie',command=jouer,underline=0)
+    J.add_command(label='Essai',command=nouvelessai,underline=0)
     R=Menu(top)
     top.add_cascade(label='Regles',menu=R,underline=0)
     R.add_command(label='Presentation',command=presentation,underline=0)
@@ -80,6 +82,33 @@ def color(event):
         	if (cercleCoord [i][0] <= X <= cercleCoord [i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
                 	plateau.create_oval (cercleCoord[i], fill = colorList[nbClic])
         nbClic = nbClic+1        
+def color2(event):
+        """ Gestion de l'événement "Clic gauche", sur un cercle, pour sélectionner une couleur """
+    
+        global nbClic
+        if nbClic >= 6: nbClic = 0
+        # position du pointeur de la souris:
+        X = event.x
+        Y = event.y
+        # Identification du cercle "cliqué" + sélection d'une couleur
+	for i in range (4,8):
+        	if (cercleCoord [i][0] <= X <= cercleCoord[i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
+                	plateau.create_oval (cercleCoord[i+1], fill = colorList[nbClic])
+        nbClic = nbClic+1        
+
+def color3(event):
+        """ Gestion de l'événement "Clic gauche", sur un cercle, pour sélectionner une couleur """
+    
+        global nbClic
+        if nbClic >= 6: nbClic = 0
+        # position du pointeur de la souris:
+        X = event.x
+        Y = event.y
+        # Identification du cercle "cliqué" + sélection d'une couleur
+	for i in range (8,12):
+        	if (cercleCoord [i][0] <= X <= cercleCoord [i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
+                	plateau.create_oval (cercleCoord[i+2], fill = colorList[nbClic])
+        nbClic = nbClic+1        
                 
 def jouer():
         """ Gestion du jeu: le clic sur le bouton "essai", déclenche l'évaluation de la combinaison proposée"""
@@ -88,17 +117,15 @@ def jouer():
         plateau.delete(ALL)
 	choiceColor(num)        # appelle la mise en place des cercles qui seront colorés par: color(event)
 	tirage()
+	jouer = True
 
 
-
-def creercercles():
+def nouvelessai():
 	global num
+	print(bool(jouer))
+	#if jouer == True: #and finalList[]==colorList[]:
         num = num+1
-	for i in range (4):
-                # mise en place cercles
-                cercle = plateau.create_oval ((i+1)*40-15, num*70-15, (i+1)*40+15, num*70+15, outline = "white")
-                cercleCoord.append (plateau.coords (cercle)) 	
-
+	choiceColor(num) 	
 def choiceColor(num):
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):
@@ -113,15 +140,17 @@ def quitter():
 ##### PROGRAMME PRINCIPAL #####
         
 fenetre= Tk()
-fenetre.title('KingMind 2.0')
+fenetre.title('KingMind 0.2')
 plateau = Canvas(fenetre, height =700,width=400, bg = 'black' )
-plateau.pack(side =RIGHT, padx =0, pady =10)
-essaiBouton = Button(fenetre, text = ("Essai"), command =creercercles)        
-essaiBouton.pack(side=TOP, padx=10, pady=0)
+plateau.pack(side =RIGHT, padx =0, pady =0)
+essaiBouton = Button(fenetre, text = ("Essai"), command =nouvelessai)        
+essaiBouton.pack(side=TOP, padx=0, pady=0)
 menu(fenetre)
 bkg = PhotoImage(file='bkg.gif')
 imageboite()
 # La méthode bind() permet de lier un événement avec une fonction
-plateau.bind('<Button-1>',color) # événement: "clic gauche" (press)
+plateau.bind('<Button-1>',color)
+plateau.bind('<Button-2>',color2)
+plateau.bind('<Button-3>',color3) # événement: "clic gauche" (press)
 
 fenetre.mainloop()
