@@ -82,34 +82,6 @@ def color(event):
         	if (cercleCoord [i][0] <= X <= cercleCoord [i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
                 	plateau.create_oval (cercleCoord[i], fill = colorList[nbClic])
         nbClic = nbClic+1        
-def color2(event):
-        """ Gestion de l'événement "Clic gauche", sur un cercle, pour sélectionner une couleur """
-    
-        global nbClic
-        if nbClic >= 6: nbClic = 0
-        # position du pointeur de la souris:
-        X = event.x
-        Y = event.y
-        # Identification du cercle "cliqué" + sélection d'une couleur
-	for i in range (4,8):
-        	if (cercleCoord [i][0] <= X <= cercleCoord[i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
-                	plateau.create_oval (cercleCoord[i+1], fill = colorList[nbClic])
-        nbClic = nbClic+1        
-
-def color3(event):
-        """ Gestion de l'événement "Clic gauche", sur un cercle, pour sélectionner une couleur """
-    
-        global nbClic
-        if nbClic >= 6: nbClic = 0
-        # position du pointeur de la souris:
-        X = event.x
-        Y = event.y
-        # Identification du cercle "cliqué" + sélection d'une couleur
-	for i in range (8,12):
-        	if (cercleCoord [i][0] <= X <= cercleCoord [i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
-                	plateau.create_oval (cercleCoord[i+2], fill = colorList[nbClic])
-        nbClic = nbClic+1        
-                
 def jouer():
         """ Gestion du jeu: le clic sur le bouton "essai", déclenche l'évaluation de la combinaison proposée"""
         # Mise en place du bouton "essai N°":
@@ -131,7 +103,8 @@ def choiceColor(num):
         for i in range (4):
                 # mise en place cercles
                 cercle = plateau.create_oval ((i+1)*40-15, num*70-15, (i+1)*40+15, num*70+15, outline = "white")
-                cercleCoord.append (plateau.coords (cercle))        # Récupère les coordonnées des cercles
+                
+                cercleCoord.insert (i, plateau.coords (cercle))        # Récupère les coordonnées des cercles
 def quitter(): 
     reponse=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") 
     if reponse:
@@ -150,7 +123,5 @@ bkg = PhotoImage(file='bkg.gif')
 imageboite()
 # La méthode bind() permet de lier un événement avec une fonction
 plateau.bind('<Button-1>',color)
-plateau.bind('<Button-2>',color2)
-plateau.bind('<Button-3>',color3) # événement: "clic gauche" (press)
 
 fenetre.mainloop()
