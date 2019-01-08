@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from Tkinter import * 
+from tkinter import * 
 from math import *	
 from random import *
 from PIL import ImageTk, Image
-from tkMessageBox import askokcancel
+from tkinter.messagebox import  askokcancel
 
 colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']        # Liste des couleurs disponibles
 finalList = []        # Liste = La combinaison de couleurs à deviner 
