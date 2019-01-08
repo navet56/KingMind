@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from Tkinter import * 
-from math import *	
+from tkinter import * 
+from math import *      
 from random import *
-from PIL import ImageTk, Image
-from tkMessageBox import  askokcancel
+#from PIL import ImageTk, Image
+from tkinter.messagebox import  askokcancel
 
 colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']        # Liste des couleurs disponibles
 finalList = [0, 0, 0, 0]        # Liste = La combinaison de couleurs à deviner
@@ -24,8 +24,8 @@ Python 2.7
 License GNU GPL V3
 Version Alpha 0.2''').pack(padx =15, pady =10)
 
-def imageboite(): 
-	plateau.create_image(200, 350, image=bkg)
+#def imageboite(): 
+#        plateau.create_image(200, 350, image=bkg)
 
 def presentation(): 
     msg =Toplevel() 
@@ -79,9 +79,9 @@ def color(event):
         X = event.x
         Y = event.y
         # Identification du cercle "cliqué" + sélection d'une couleur
-	for i in range (4):
-        	if (cercleCoord [i][0] <= X <= cercleCoord [i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
-                	plateau.create_oval (cercleCoord[i], fill = colorList[nbClic])
+        for i in range (4):
+                if (cercleCoord [i][0] <= X <= cercleCoord [i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
+                        plateau.create_oval (cercleCoord[i], fill = colorList[nbClic])
                         currentList[i] = nbClic
         nbClic = nbClic+1        
 def jouer():
@@ -89,20 +89,23 @@ def jouer():
         # Mise en place du bouton "essai N°":
         """ C'est à partir de l'ACTION sur ce bouton qu'il faut continuer le MOTEUR DU JEU """
         plateau.delete(ALL)
-	choiceColor(num)        # appelle la mise en place des cercles qui seront colorés par: color(event)
-	tirage()
-	jouer = True
+        global num
+        num = 1
+        choiceColor(num)        # appelle la mise en place des cercles qui seront colorés par: color(event)
+        tirage()
+        jouer = True
 
 
 def nouvelessai():
-	global num
-	print(bool(jouer))
-	#if jouer == True: #and finalList[]==colorList[]:
+        global num
+        print(bool(jouer))
+        #if jouer == True: #and finalList[]==colorList[]:
         num = num+1
-	choiceColor(num)
+        choiceColor(num)
         for i in range (4):
             print("Comparaison essai :")
             print(currentList[i] == finalList[i])
+            
 def choiceColor(num):
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):
@@ -124,8 +127,8 @@ plateau.pack(side =RIGHT, padx =0, pady =0)
 essaiBouton = Button(fenetre, text = ("Essai"), command =nouvelessai)        
 essaiBouton.pack(side=TOP, padx=0, pady=0)
 menu(fenetre)
-bkg = PhotoImage(file='bkg.gif')
-imageboite()
+#bkg = PhotoImage(file='bkg.gif')
+#imageboite()
 # La méthode bind() permet de lier un événement avec une fonction
 plateau.bind('<Button-1>',color)
 
