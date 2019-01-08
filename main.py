@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from tkinter import * 
+from Tkinter import * 
 from math import *	
 from random import *
 from PIL import ImageTk, Image
-from tkinter.messagebox import  askokcancel
+from tkMessageBox import  askokcancel
 
 colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']        # Liste des couleurs disponibles
-finalList = []        # Liste = La combinaison de couleurs à deviner 
+finalList = [0, 0, 0, 0]        # Liste = La combinaison de couleurs à deviner
+currentList = [0, 0, 0, 0]
 cercleCoord = []        # Liste, de listes  = coordonnées des 4 cercles, d'un essai   
 nbClic = 0        # gestion du nombre de "clic gauche souris", utilisée pour sélectionner une couleur
 num = 1
@@ -58,7 +59,7 @@ def tirage():
         """ Tirage de la combinaison de couleur à deviner + Mise en forme: suite de 5 couleurs à deviner """
         plateau.create_rectangle(10, 8, 190, 42, outline='white',fill='black')
         for i in range (4):
-                finalList.append (choice(colorList))        # tirage au sort d'une couleur dans la liste: colorList[]
+                finalList[i] = choice(colorList)        # tirage au sort d'une couleur dans la liste: colorList[]
                 # Tracé d'un rectangle et des cercles représentant la combinaison à rechercher
                 plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, outline = "black")
                 txt = plateau.create_text((i+1)*40, 25, text="?", font="Arial 16 ", fill="blue")
@@ -81,6 +82,7 @@ def color(event):
 	for i in range (4):
         	if (cercleCoord [i][0] <= X <= cercleCoord [i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
                 	plateau.create_oval (cercleCoord[i], fill = colorList[nbClic])
+                        currentList[i] = nbClic
         nbClic = nbClic+1        
 def jouer():
         """ Gestion du jeu: le clic sur le bouton "essai", déclenche l'évaluation de la combinaison proposée"""
@@ -97,7 +99,10 @@ def nouvelessai():
 	print(bool(jouer))
 	#if jouer == True: #and finalList[]==colorList[]:
         num = num+1
-	choiceColor(num) 	
+	choiceColor(num)
+        for i in range (4):
+            print("Comparaison essai :")
+            print(currentList[i] == finalList[i])
 def choiceColor(num):
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):
