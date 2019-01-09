@@ -4,7 +4,6 @@
 from tkinter import * 
 from math import *      
 from random import *
-
 from tkinter.messagebox import  askokcancel
 
 
@@ -29,6 +28,8 @@ Version Alpha 0.2''').pack(padx =15, pady =10)
 
 def imageboite(): 
     plateau.create_image(200, 350, image=bkg)
+def imageking():
+	plateau.create_image(150, 540, image=theking)
 
 def presentation():    #Création de la section "présentation"
     msg =Toplevel() 
@@ -92,16 +93,14 @@ def jouer():
         """ Gestion du jeu: le clic sur le bouton "essai", déclenche l'évaluation de la combinaison proposée"""
         # Mise en place du bouton "essai N°":
         """ C'est à partir de l'ACTION sur ce bouton qu'il faut continuer le MOTEUR DU JEU """
-        plateau.delete(ALL)     #supprime tout sur le plateau pour reinitialiser le plateau
+        plateau.delete(ALL)     #supprime tout sur le plateau pour reinitialiser le plateau et supprimer l'image de la boite notamment
         global num
-        num = 1
+        num = 1					#cette variable va nous servir pour créer les 4 cercles
         creerCercle(num)        # appelle la mise en place des cercles qui seront colorés par: color(event)
-        tirage()
+        tirage()				#on éffectue le choix aléatoire et on place les points d'interrogations
         global jouant
         jouant = True			#jouant est un booleen permettant entre autre de bloquer le bouton essai si nouvelle partie n'est pas actif, la on le met actif car nouvelle partie est actionné
 def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles en dessous de ceux d'avant et compare avec la cominaison magique
-    print("Nouvel essai. Jouer :")
-    print(jouant)
     if jouant == True:
         global num
         num = num+1
@@ -111,7 +110,7 @@ def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles 
         indice()
 def indice():
 	for i in range(4):
-		plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, outline = "white")#on dessin les coutours blancs de placement des voules d'indice
+		plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, outline = "white")#on dessin les contours blancs de placement des voules d'indice
 	i = 0 #on remet i à 0 pour pouvoir continuer à l'utiliser
 	confirme = 0 #on initialise confime
 	colorCount = [0, 0, 0, 0, 0, 0] #on créé la liste qui permet de compter les couleurs
@@ -131,10 +130,10 @@ def findujeu():
         """ Pour révéler la suite recherchée... """ 
         for i in range (len(finalList)):
                 plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, fill = colorList[finalList[i]])
-        plateau.create_text(150, 570, text="La partie est terminée !", font="Arial 16 ", fill="white")
         global jouant
         jouant = False #on désactive jouant pour ne plus que les actions marchent
-                
+        imageking()
+        plateau.create_text(150, 640, text="La partie est terminée.", font="Arial 16 ", fill="white")
 def creerCercle(num):      #mise en place des cercles colorés
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):
@@ -156,7 +155,8 @@ essaiBouton = Button(fenetre, text = ("Essai"), command =nouvelessai)
 essaiBouton.pack(side=TOP, padx=0, pady=20)
 menu(fenetre)
 bkg = PhotoImage(file='bkg.gif')
-imageboite()
+theking = PhotoImage(file='theking.gif')
+imageboite()#la fenetre du jeu demarre directement sur l'image de la boite du jeu officiel
 # La méthode bind() permet de lier un événement avec une fonction
 plateau.bind('<Button-1>',color)
 fenetre.mainloop()
