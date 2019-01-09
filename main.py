@@ -13,7 +13,6 @@ currentList = [0, 0, 0, 0]                                                #Liste
 cercleCoord = []                                                          # Liste, de listes  = coordonnées des 4 cercles, d'un essai   
 nbClic = 0                                                                # gestion du nombre de "clic gauche souris", utilisée pour sélectionner une couleur
 num = 1
-jouer = False
 def aPropos():         #Création de la section "à propos"             
     msg =Toplevel() 
     Message(msg, width=200, aspect=200, justify=CENTER, 
@@ -94,8 +93,6 @@ def jouer():
         num = 1
         choiceColor(num)        # appelle la mise en place des cercles qui seront colorés par: color(event)
         tirage()
-        jouer = True
-
 
 def nouvelessai():
         global num
@@ -126,7 +123,7 @@ def quitter():       #créé la fenêtre  pour quitter la partie
         
 fenetre= Tk()
 fenetre.title('KingMind 0.2')
-plateau = Canvas(fenetre, height =700,width=400, bg = 'black' )
+plateau = Canvas(fenetre, height =700,width=400, bg='black' )
 plateau.pack(side =RIGHT, padx =0, pady =0)
 essaiBouton = Button(fenetre, text = ("Essai"), command =nouvelessai)        
 essaiBouton.pack(side=TOP, padx=0, pady=0)
