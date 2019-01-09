@@ -99,14 +99,11 @@ def nouvelessai():
         num = num+1
         choiceColor(num)    
         for i in range (4):
-            test = (currentList[i] == finalList[i])
-            if test:
+            if currentList[i] != finalList[i]:
                 plateau.create_oval ((i+6)*40-15, 35+num*35-15, (i+6)*40+15, 35+num*35+15, fill = "white")
             else:
                 plateau.create_oval ((i+6)*40-15, 35+num*35-15, (i+6)*40+15, 35+num*35+15, outline = "white")
             
-            print("Comparaison essai :")
-            print(test)
             
 def choiceColor(num):      #mise en place des cercles colorés
         """ Mise en place des cercles de la proposition, avant leur coloration"""
