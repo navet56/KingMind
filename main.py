@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from tkinter import * 
-from math import *      
+#from math import *      
 from random import *
 from tkinter.messagebox import  askokcancel
 
@@ -105,7 +105,7 @@ def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles 
         global num
         num = num+1
         if num > 10:
-            victoire()
+            findujeu()
         creerCercle(num)
         indice()
 def indice():
