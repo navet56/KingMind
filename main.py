@@ -118,7 +118,7 @@ def indice():
 		colorCount[finalList[j]] = colorCount[finalList[j]] + 1 #on incremente le comptage de la finalList 4 fois
 	for j in range(4):
 		colorCount[currentList[j]] = colorCount[currentList[j]] - 1 #on baisse de -1 le comptage de la liste fait par le joueur
-		if finalList.count(currentList[j]) >= 1 and colorCount[currentList[j]] >= 0: #si la finalList a + de 1 couleurs pareil et que la colorList[currentList] est toujours positive
+		if finalList.count(currentList[j]) >= 1 and colorCount[currentList[j]] >= 0: #si la finalList au moins 1 couleurs pareil et que la colorList[currentList] est toujours positive :
 			plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, fill = "white")#on place une boule blanche
 			if currentList[j] == finalList[j]: #si la couleur est au même endroit dans la liste que celle de l'ordinateur
 				plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, fill = "red")#on place une boule rouge
