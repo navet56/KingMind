@@ -4,7 +4,7 @@
 from tkinter import * 
 from math import *      
 from random import *
-#from PIL import ImageTk, Image
+
 from tkinter.messagebox import  askokcancel
 
 
@@ -27,8 +27,8 @@ Python 3.7
 License GNU GPL V3
 Version Alpha 0.2''').pack(padx =15, pady =10)
 
-#def imageboite(): 
-#        plateau.create_image(200, 350, image=bkg)
+def imageboite(): 
+    plateau.create_image(200, 350, image=bkg)
 
 def presentation():    #Création de la section "présentation"
     msg =Toplevel() 
@@ -155,8 +155,8 @@ plateau.pack(side =RIGHT, padx =0, pady =0)
 essaiBouton = Button(fenetre, text = ("Essai"), command =nouvelessai)        
 essaiBouton.pack(side=TOP, padx=0, pady=20)
 menu(fenetre)
-#bkg = PhotoImage(file='bkg.gif')
-#imageboite()
+bkg = PhotoImage(file='bkg.gif')
+imageboite()
 # La méthode bind() permet de lier un événement avec une fonction
 plateau.bind('<Button-1>',color)
 fenetre.mainloop()
