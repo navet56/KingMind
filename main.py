@@ -15,6 +15,7 @@ cercleCoord = []                                                          # List
 nbClic = 0                                                                # gestion du nombre de "clic gauche souris", utilisée pour sélectionner une couleur
 num = 1
 jouant = False
+
 def aPropos():         #Création de la section "à propos"             
     msg =Toplevel() 
     Message(msg, width=200, aspect=200, justify=CENTER, 
@@ -70,12 +71,12 @@ def tirage():
                 finalList[i] = choice(idColorList)        # tirage au sort d'une couleur dans la liste: colorList[]
                 # Tracé d'un rectangle et des cercles représentant la combinaison à rechercher
                 plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, outline = "black")
-                txt = plateau.create_text((i+1)*40, 25, text="?", font="Arial 16 ", fill="blue")
+                txt = plateau.create_text((i+1)*40, 25, text="?", font="Arial 16 ", fill="white")
 def victoire():
         """ Pour révéler la suite recherchée... """ 
         for i in range (len(finalList)):
                 plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, fill = colorList[finalList[i]])
-        plateau.create_text(400, 255, text="La partie est terminée !", font="Arial 16 ", fill="blue")
+        plateau.create_text(150, 570, text="La partie est terminée !", font="Arial 16 ", fill="white")
         global jouant
         jouant = False
 def color(event):
@@ -116,7 +117,6 @@ def nouvelessai():
         creerCercle(num)
         for i in range(4):
             plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, outline = "white")
-        
         i = 0
         confirme = 0
         colorCount = [0, 0, 0, 0, 0, 0]
@@ -129,9 +129,7 @@ def nouvelessai():
                 if currentList[j] == finalList[j]:
                     plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, fill = "red")
                     confirme = confirme + 1
-
                 i = i + 1
-                    
         if confirme == 4:
             victoire()
     
