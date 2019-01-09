@@ -36,7 +36,14 @@ Selectionne parmis 6 couleurs puis l'ordinateur te dira, grace a des ronds rouge
 def deroule():         #Création de la section "déroule"
     msg =Toplevel() 
     Message(msg, width =200, aspect =100, justify =CENTER, 
-        text ='''WIP''').pack(padx =15, pady =10)
+        text ='''----Comment jouer à KingMind----
+
+Pour changer les couleurs, il faut cliquer sur les 4 cercles qui vous sont présentés.
+Pour voir si votre combinaison est la bonne, il faut cliquer sur le bouton essai en haut à gauche.
+A chaque essai, 4 points de couleur rouges ou blancs vous sont présentés :
+Les Rouges correspondent à une bonne couleur à la bonne place,
+les Blancs correspondent a une bonne couleur mais celle-ci est mal placée
+Bon courage !!''').pack(padx =15, pady =10)
 def menu(fenetre):     #Création de la barre de menu avec ses boutons
     "Barre de menu"
     top=Menu(fenetre)
