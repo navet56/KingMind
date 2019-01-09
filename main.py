@@ -5,7 +5,6 @@ from tkinter import *
 from random import *
 from tkinter.messagebox import  askokcancel
 
-
 # Variables :
 
 colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']        # Liste des couleurs disponibles
@@ -16,7 +15,6 @@ cercleCoord = []                                                          # List
 nbClic = 0                                                                # gestion du nombre de "clic gauche souris", utilisée pour sélectionner une couleur
 nbreEssai = 1
 jouant = False
-
 
 #Fonctions d'interfaces et de graphismes :
 
