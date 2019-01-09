@@ -114,7 +114,7 @@ def choiceColor(num):      #mise en place des cercles colorés
 def quitter():       #créé la fenêtre  pour quitter la partie
         reponse=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") 
         if reponse:
-                fenetre.quit() 
+                fenetre.destroy() 
                        
 ##### PROGRAMME PRINCIPAL #####
         
