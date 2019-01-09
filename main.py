@@ -46,6 +46,7 @@ def menu(fenetre):     #Création de la barre de menu avec ses boutons
     top.add_cascade(label='Jeu',menu=J,underline=0)
     J.add_command(label='Nouvelle partie',command=jouer,underline=0)
     J.add_command(label='Essai',command=nouvelessai,underline=0)
+    J.add_command(label='Montrer la combinaison',command=reveal,underline=0)
     R=Menu(top)
     top.add_cascade(label='Regles',menu=R,underline=0)
     R.add_command(label='Presentation',command=presentation,underline=0)
