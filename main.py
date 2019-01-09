@@ -6,14 +6,19 @@ from random import *
 from tkinter.messagebox import  askokcancel
 
 
+# Variables :
+
 colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']        # Liste des couleurs disponibles
 idColorList = [0, 1, 2, 3, 4, 5]										  # Liste qui assigne des chiffres aux couleurs
 finalList = [0, 0, 0, 0]                                                  # Liste de la combinaison de couleurs à deviner, généré par l'ordinateur
 currentList = [0, 0, 0, 0]                                                # Liste des couleurs choisies par le joueur
 cercleCoord = []                                                          # Liste, de listes  = coordonnées des 4 cercles, d'un essai   
 nbClic = 0                                                                # gestion du nombre de "clic gauche souris", utilisée pour sélectionner une couleur
-num = 1
+nbreEssai = 1
 jouant = False
+
+
+#Fonctions d'interfaces et de graphismes :
 
 def aPropos():         #Création de la section "à propos"             
     msg =Toplevel() 
@@ -65,6 +70,8 @@ def menu(fenetre):     #Création de la barre de menu avec ses boutons
     O.add_command(label='A propos',command=aPropos,underline=0)
     O.add_command(label='Quitter le jeu',command=quitter,underline=0)
 
+#Coeur des fonctions du programme principal :
+
 def tirage():
         """ Tirage de la combinaison de couleur à deviner + Mise en forme: suite de 5 couleurs à deviner """
         # Tracé d'un rectangle et des cercles représentant la combinaison à rechercher
@@ -93,9 +100,9 @@ def jouer():
         # Mise en place du bouton "essai N°":
         """ C'est à partir de l'ACTION sur ce bouton qu'il faut continuer le MOTEUR DU JEU """
         plateau.delete(ALL)     #supprime tout sur le plateau pour reinitialiser le plateau et supprimer l'image de la boite notamment
-        global num
-        num = 1					#cette variable va nous servir pour créer les 4 cercles
-        creerCercle(num)        # appelle la mise en place des cercles qui seront colorés par: color(event)
+        global nbreEssai
+        nbreEssai = 1					#cette variable va nous servir pour créer les 4 cercles
+        creerCercle(nbreEssai)        # appelle la mise en place des cercles qui seront colorés par: color(event)
         tirage()				#on éffectue le choix aléatoire et on place les points d'interrogations
         global jouant
         jouant = True			#jouant est un booleen permettant entre autre de bloquer le bouton essai si nouvelle partie n'est pas actif, la on le met actif car nouvelle partie est actionné
@@ -104,11 +111,11 @@ def jouer():
 
 def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles en dessous de ceux d'avant et compare avec la cominaison magique
     if jouant == True:
-        global num
-        num = num+1
-        if num > 10:
+        global nbreEssai
+        nbreEssai = nbreEssai+1
+        if nbreEssai > 10:
             findujeu()
-        creerCercle(num)
+        creerCercle(nbreEssai)
         indice()
 def indice():
 	i = 0 #on remet i à 0 pour pouvoir continuer à l'utiliser
@@ -119,9 +126,9 @@ def indice():
 	for j in range(4):
 		colorCount[currentList[j]] = colorCount[currentList[j]] - 1 #on baisse de -1 le comptage de la liste fait par le joueur
 		if finalList.count(currentList[j]) >= 1 and colorCount[currentList[j]] >= 0: #si la finalList au moins 1 couleurs pareil et que la colorList[currentList] est toujours positive :
-			plateau.create_oval ((i+6)*40-15, (num-1)*35+70, (i+6)*40+15, (num - 1)*35+100, fill = "white")#on place une boule blanche
+			plateau.create_oval ((i+6)*40-15, (nbreEssai-1)*35+70, (i+6)*40+15, (nbreEssai - 1)*35+100, fill = "white")#on place une boule blanche
 			if currentList[j] == finalList[j]: #si la couleur est au même endroit dans la liste que celle de l'ordinateur
-				plateau.create_oval ((i+6)*40-15, (num-1)*35+70, (i+6)*40+15, (num - 1)*35+100, fill = "red")#on place une boule rouge
+				plateau.create_oval ((i+6)*40-15, (nbreEssai-1)*35+70, (i+6)*40+15, (nbreEssai - 1)*35+100, fill = "red")#on place une boule rouge
 				confirme = confirme + 1#on incrémente confirme de 1
 			i = i + 1
 		if confirme == 4:#si confirme est de 4, c'est que les 4 couleurs sont égals
@@ -135,11 +142,11 @@ def findujeu():
         jouant = False #on désactive jouant pour ne plus que les actions marchent
         imageking() #on affiche l'image de fin
         plateau.create_text(150, 720, text="La partie est terminée.", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
-def creerCercle(num):      #mise en place des cercles colorés
+def creerCercle(nbreEssai):      #mise en place des cercles colorés
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):
                 # mise en place cercles
-                cercle = plateau.create_oval ((i+1)*40-15, num*35+70, (i+1)*40+15, num*35+100, outline = "white")
+                cercle = plateau.create_oval ((i+1)*40-15, nbreEssai*35+70, (i+1)*40+15, nbreEssai*35+100, outline = "white")
                 cercleCoord.insert (i, plateau.coords (cercle))        # Récupère les coordonnées des cercles
 def quitter():       #créé la fenêtre  pour quitter la partie
         reponse=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") #on utilise la fonction askokcancel de la bibliothèque messagebox de tkinter
