@@ -100,6 +100,7 @@ def jouer():
         tirage()				#on éffectue le choix aléatoire et on place les points d'interrogations
         global jouant
         jouant = True			#jouant est un booleen permettant entre autre de bloquer le bouton essai si nouvelle partie n'est pas actif, la on le met actif car nouvelle partie est actionné
+
 def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles en dessous de ceux d'avant et compare avec la cominaison magique
     if jouant == True:
         global num
@@ -127,13 +128,14 @@ def indice():
 		if confirme == 4:#si confirme est de 4, c'est que les 4 couleurs sont égals
 			findujeu()#on lance la fonction de fin du jeu, de victoire
 def findujeu():
-        """ Pour révéler la suite recherchée... """ 
+    """ Pour révéler la suite recherchée... """ 
+    global jouant
+    if jouant == True:
         for i in range (len(finalList)):
-                plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, fill = colorList[finalList[i]])
-        global jouant
+            plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, fill = colorList[finalList[i]]) #on affiche la cominaison finale
         jouant = False #on désactive jouant pour ne plus que les actions marchent
-        imageking()
-        plateau.create_text(150, 640, text="La partie est terminée.", font="Arial 16 ", fill="white")
+        imageking() #on affiche l'image de fin
+        plateau.create_text(150, 640, text="La partie est terminée.", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
 def creerCercle(num):      #mise en place des cercles colorés
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):
