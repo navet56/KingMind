@@ -82,7 +82,7 @@ def color(event):
         for i in range (4):
                 if (cercleCoord [i][0] <= X <= cercleCoord [i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
                         plateau.create_oval (cercleCoord[i], fill = colorList[nbClic])
-                        currentList[i] = nbClic       #permet la coloration des cercles
+                        currentList[i] = colorList[nbClic]       #permet la coloration des cercles
         nbClic = nbClic+1        
 def jouer():
         """ Gestion du jeu: le clic sur le bouton "essai", déclenche l'évaluation de la combinaison proposée"""
@@ -99,13 +99,14 @@ def nouvelessai():
         num = num+1
         choiceColor(num)    
         for i in range (4):
-            if currentList[i] == finalList[i]:
+            test = (currentList[i] == finalList[i])
+            if test:
                 plateau.create_oval ((i+6)*40-15, 35+num*35-15, (i+6)*40+15, 35+num*35+15, fill = "white")
             else:
                 plateau.create_oval ((i+6)*40-15, 35+num*35-15, (i+6)*40+15, 35+num*35+15, outline = "white")
             
             print("Comparaison essai :")
-            print(currentList[i] == finalList[i])
+            print(test)
             
 def choiceColor(num):      #mise en place des cercles colorés
         """ Mise en place des cercles de la proposition, avant leur coloration"""
