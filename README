@@ -2,11 +2,11 @@ A LIRE POUR INSTALLER KINGMIND :
 
 -------Windows-----------------
 
-Installez Python 3.4 ici : https://www.python.org/ftp/python/2.7.15/python-2.7.15.msi
+Installez Python 3.7 ici : https://www.python.org/ftp/python/3.7.2/python-3.7.2-amd64.exe
 
-Installez egalement Tkinter pour Pyhton 3.4 et PIL
+Installez egalement Tkinter pour Python 3.7
 
-Ensuite téléchargez IDLE qui est l'environnement de deloppement officiel de Python. (IDLE Python 2.7)
+Ensuite téléchargez IDLE qui est l'environnement de developpement officiel de Python. (IDLE Python 3.7)
 
 Ouvrez main.py avec IDLE
 
@@ -16,13 +16,11 @@ Appuyez sur F5 pour lancer KingMind
 
 -----Linux------------
 
-Ouvrez un terminal dans le dossier KIngMind et faite : ./Start.sh
+Ouvrez un terminal dans le dossier KingMind et faite : ./Start.sh
 
 -----Mac-------------
 
 Installer Python 3
-
-Installer Pillow pour python 3 ou 2 :(pour python3:pip3 install pillow, python2:pip install pillow )dans les commandes
 
 Comme sur Mac, il y a des incompatibilité avec Tkinter:
 Installer :https://www.activestate.com/products/activetcl/downloads/
@@ -30,9 +28,6 @@ Installer :https://www.activestate.com/products/activetcl/downloads/
 Ouvrez main.py avec IDLE
 
 Appuyez sur F5 pour lancer KingMind
-
-
-
 
 Bon jeu !
 
