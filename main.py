@@ -7,6 +7,7 @@ from random import *
 #from PIL import ImageTk, Image
 from tkinter.messagebox import  askokcancel
 
+idColorList = [0, 1, 2, 3, 4, 5]
 colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']        # Liste des couleurs disponibles
 finalList = [0, 0, 0, 0]                                                  # Liste = La combinaison de couleurs à deviner
 currentList = [0, 0, 0, 0]                                                # Liste = Couleurs choisies par l joueur
@@ -66,14 +67,14 @@ def tirage():
         """ Tirage de la combinaison de couleur à deviner + Mise en forme: suite de 5 couleurs à deviner """
         plateau.create_rectangle(10, 8, 190, 42, outline='white',fill='black')
         for i in range (4):
-                finalList[i] = choice(colorList)        # tirage au sort d'une couleur dans la liste: colorList[]
+                finalList[i] = choice(idColorList)        # tirage au sort d'une couleur dans la liste: colorList[]
                 # Tracé d'un rectangle et des cercles représentant la combinaison à rechercher
                 plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, outline = "black")
                 txt = plateau.create_text((i+1)*40, 25, text="?", font="Arial 16 ", fill="blue")
 def victoire():
         """ Pour révéler la suite recherchée... """ 
         for i in range (len(finalList)):
-                plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, fill = finalList[i])
+                plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, fill = colorList[finalList[i]])
         plateau.create_text(400, 255, text="La partie est terminée !", font="Arial 16 ", fill="blue")
         global jouant
         jouant = False
@@ -90,7 +91,7 @@ def color(event):
         for i in range (4):
                 if (cercleCoord [i][0] <= X <= cercleCoord [i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
                         plateau.create_oval (cercleCoord[i], fill = colorList[nbClic])
-                        currentList[i] = colorList[nbClic]       #permet la coloration des cercles
+                        currentList[i] = nbClic     #permet la coloration des cercles
         nbClic = nbClic+1        
 def jouer():
         """ Gestion du jeu: le clic sur le bouton "essai", déclenche l'évaluation de la combinaison proposée"""
@@ -118,8 +119,12 @@ def nouvelessai():
         
         i = 0
         confirme = 0
+        colorCount = [0, 0, 0, 0, 0, 0]
         for j in range(4):
-            if finalList.count(currentList[j]) >= 1:
+            colorCount[finalList[j]] = colorCount[finalList[j]] + 1
+        for j in range(4):
+            colorCount[currentList[j]] = colorCount[currentList[j]] - 1
+            if finalList.count(currentList[j]) >= 1 and colorCount[currentList[j]] >= 0:
                 plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, fill = "white")
                 if currentList[j] == finalList[j]:
                     plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, fill = "red")
