@@ -159,8 +159,11 @@ fenetre= Tk()
 fenetre.title('KingMind 1.0')
 plateau = Canvas(fenetre, height =750,width=400, bg='black' )
 plateau.pack(side =RIGHT, padx =0, pady =0)
-essaiBouton = Button(fenetre, text = ("Essai"), command =nouvelessai)        
-essaiBouton.pack(side=TOP, padx=0, pady=20)
+can=Canvas(fenetre,height=750,width=200, bg='black') #espace de gauche utilisé pour le bouton essai
+can.pack(side=LEFT) 
+selObject=can
+essaiBouton = Button(can, text = ("Essai"), command =nouvelessai)        
+essaiBouton.pack(side=TOP, padx=0, pady=360) 
 menu(fenetre)
 bkg = PhotoImage(file='bkg.gif')
 theking = PhotoImage(file='theking.gif')
