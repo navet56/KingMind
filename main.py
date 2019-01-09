@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from tkinter import * 
-#from math import *      
+from tkinter import *      
 from random import *
 from tkinter.messagebox import  askokcancel
 
@@ -24,19 +23,19 @@ Par Evan Diberder, Mael Le Boulicaut, Kilian Buan
 Tk version 8.4
 Python 3.7
 License GNU GPL V3
-Version Alpha 0.2''').pack(padx =15, pady =10)
+Version Alpha 1.0''').pack(padx =15, pady =10)
 
 def imageboite(): 
     plateau.create_image(200, 350, image=bkg)
 def imageking():
-	plateau.create_image(150, 540, image=theking)
+	plateau.create_image(150, 600, image=theking)
 
 def presentation():    #Création de la section "présentation"
     msg =Toplevel() 
     Message(msg, width =200, aspect =150, justify =CENTER, 
         text ='''----Presentation du jeu----
 Le but du jeu est de trouver la combinaison magique choisie par l'ordinateur.
-Selectionne parmis 6 couleurs puis l'ordinateur te dira, grace a des ronds rouges ou blancs la proximite avec la bonne combinaison.''').pack(padx =15, pady =10)
+Sélectionne parmis 6 couleurs puis l'ordinateur te dira, grâce a des ronds rouges ou blancs la proximité avec la bonne combinaison.''').pack(padx =15, pady =10)
 
 def deroule():         #Création de la section "déroule"
     msg =Toplevel() 
@@ -59,8 +58,8 @@ def menu(fenetre):     #Création de la barre de menu avec ses boutons
     J.add_command(label='Abandonner (montrer la reponse)',command=findujeu,underline=0)
     R=Menu(top)#R est un sous-menu de top
     top.add_cascade(label='Regles',menu=R,underline=0)
-    R.add_command(label='Presentation',command=presentation,underline=0)
-    R.add_command(label='Deroule',command=deroule,underline=0)
+    R.add_command(label='Présentation',command=presentation,underline=0)
+    R.add_command(label='Déroulé',command=deroule,underline=0)
     O=Menu(top)#etc
     top.add_cascade(label='Options',menu=O,underline=0)
     O.add_command(label='A propos',command=aPropos,underline=0)
@@ -68,12 +67,12 @@ def menu(fenetre):     #Création de la barre de menu avec ses boutons
 
 def tirage():
         """ Tirage de la combinaison de couleur à deviner + Mise en forme: suite de 5 couleurs à deviner """
-        plateau.create_rectangle(10, 8, 190, 42, outline='white',fill='black') #création du rectangle autour de des 4 ronds de la combinaison finale
+        # Tracé d'un rectangle et des cercles représentant la combinaison à rechercher
+        plateau.create_rectangle(10, 58, 190, 92, outline='white',fill='black') #création du rectangle autour de des 4 ronds de la combinaison finale
         for i in range (4):
                 finalList[i] = choice(idColorList)        # tirage au sort d'une couleur dans la liste: idColorList
-                # Tracé d'un rectangle et des cercles représentant la combinaison à rechercher
                 plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, outline = "black")
-                txt = plateau.create_text((i+1)*40, 25, text="?", font="Arial 16 ", fill="white")
+                txt = plateau.create_text((i+1)*40, 76, text="?", font="Arial 16 ", fill="white")
 def color(event):
     if jouant:
         """ Gestion de l'événement "Clic gauche", sur un cercle, pour sélectionner une couleur """
@@ -100,6 +99,8 @@ def jouer():
         tirage()				#on éffectue le choix aléatoire et on place les points d'interrogations
         global jouant
         jouant = True			#jouant est un booleen permettant entre autre de bloquer le bouton essai si nouvelle partie n'est pas actif, la on le met actif car nouvelle partie est actionné
+        plateau.create_text(90, 32, text="Combinaison", font="Arial 14 ", fill="white") #on créé le texte pour indiquer à quoi sert cette colonne, ici :la colonne pour entrer les combinaisons
+        plateau.create_text(290, 32, text="Indice", font="Arial 14 ", fill="white") #on créé le texte pour indiquer à quoi sert cette colonne, ici ; la colonne qui donne les indices
 
 def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles en dessous de ceux d'avant et compare avec la cominaison magique
     if jouant == True:
@@ -110,8 +111,6 @@ def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles 
         creerCercle(num)
         indice()
 def indice():
-	for i in range(4):
-		plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, outline = "white")#on dessin les contours blancs de placement des voules d'indice
 	i = 0 #on remet i à 0 pour pouvoir continuer à l'utiliser
 	confirme = 0 #on initialise confime
 	colorCount = [0, 0, 0, 0, 0, 0] #on créé la liste qui permet de compter les couleurs
@@ -120,10 +119,10 @@ def indice():
 	for j in range(4):
 		colorCount[currentList[j]] = colorCount[currentList[j]] - 1 #on baisse de -1 le comptage de la liste fait par le joueur
 		if finalList.count(currentList[j]) >= 1 and colorCount[currentList[j]] >= 0: #si la finalList au moins 1 couleurs pareil et que la colorList[currentList] est toujours positive :
-			plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, fill = "white")#on place une boule blanche
+			plateau.create_oval ((i+6)*40-15, (num-1)*35+70, (i+6)*40+15, (num - 1)*35+100, fill = "white")#on place une boule blanche
 			if currentList[j] == finalList[j]: #si la couleur est au même endroit dans la liste que celle de l'ordinateur
-				plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, fill = "red")#on place une boule rouge
-				confirme = confirme + 1#on incremente confirme de 1
+				plateau.create_oval ((i+6)*40-15, (num-1)*35+70, (i+6)*40+15, (num - 1)*35+100, fill = "red")#on place une boule rouge
+				confirme = confirme + 1#on incrémente confirme de 1
 			i = i + 1
 		if confirme == 4:#si confirme est de 4, c'est que les 4 couleurs sont égals
 			findujeu()#on lance la fonction de fin du jeu, de victoire
@@ -132,15 +131,15 @@ def findujeu():
     global jouant
     if jouant == True:
         for i in range (len(finalList)):
-            plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, fill = colorList[finalList[i]]) #on affiche la cominaison finale
+            plateau.create_oval ((i+1)*40-15, 60, (i+1)*40+15, 90, fill = colorList[finalList[i]]) #on affiche la combinaison finale
         jouant = False #on désactive jouant pour ne plus que les actions marchent
         imageking() #on affiche l'image de fin
-        plateau.create_text(150, 640, text="La partie est terminée.", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
+        plateau.create_text(150, 720, text="La partie est terminée.", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
 def creerCercle(num):      #mise en place des cercles colorés
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):
                 # mise en place cercles
-                cercle = plateau.create_oval ((i+1)*40-15, 35+num*35-15, (i+1)*40+15, 35+num*35+15, outline = "white")
+                cercle = plateau.create_oval ((i+1)*40-15, num*35+70, (i+1)*40+15, num*35+100, outline = "white")
                 cercleCoord.insert (i, plateau.coords (cercle))        # Récupère les coordonnées des cercles
 def quitter():       #créé la fenêtre  pour quitter la partie
         reponse=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") #on utilise la fonction askokcancel de la bibliothèque messagebox de tkinter
@@ -150,8 +149,8 @@ def quitter():       #créé la fenêtre  pour quitter la partie
 # Lancement du programme :
         
 fenetre= Tk()
-fenetre.title('KingMind 0.2')
-plateau = Canvas(fenetre, height =700,width=400, bg='black' )
+fenetre.title('KingMind 1.0')
+plateau = Canvas(fenetre, height =750,width=400, bg='black' )
 plateau.pack(side =RIGHT, padx =0, pady =0)
 essaiBouton = Button(fenetre, text = ("Essai"), command =nouvelessai)        
 essaiBouton.pack(side=TOP, padx=0, pady=20)
