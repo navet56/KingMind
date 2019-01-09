@@ -100,6 +100,7 @@ def jouer():
 def nouvelessai():
         global num
         num = num+1
+        creerCercle(num)
         for i in range(4):
             plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, outline = "white")
         
