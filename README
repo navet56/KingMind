@@ -2,9 +2,9 @@ A LIRE POUR INSTALLER KINGMIND :
 
 -------Windows-----------------
 
-Installez Python 2.7.15 ici : https://www.python.org/ftp/python/2.7.15/python-2.7.15.msi
+Installez Python 3.4 ici : https://www.python.org/ftp/python/2.7.15/python-2.7.15.msi
 
-Installez egalement Tkinter pour Pyhton 2.7 et PIL
+Installez egalement Tkinter pour Pyhton 3.4 et PIL
 
 Ensuite téléchargez IDLE qui est l'environnement de deloppement officiel de Python. (IDLE Python 2.7)
 
@@ -20,7 +20,7 @@ Ouvrez un terminal dans le dossier KIngMind et faite : ./Start.sh
 
 -----Mac-------------
 
-Installer Python  2.X 
+Installer Python 3
 
 Installer Pillow pour python 3 ou 2 :(pour python3:pip3 install pillow, python2:pip install pillow )dans les commandes
 
