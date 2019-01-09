@@ -100,14 +100,23 @@ def jouer():
 def nouvelessai():
         global num
         num = num+1
-        creerCercle(num)    
-        for i in range (4):
-            if currentList[i] != finalList[i]:
-                plateau.create_oval ((i+6)*40-15, 35+num*35-15, (i+6)*40+15, 35+num*35+15, fill = "white")
-            else:
-                plateau.create_oval ((i+6)*40-15, 35+num*35-15, (i+6)*40+15, 35+num*35+15, outline = "white")
-            
-            
+        for i in range(4):
+            plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, outline = "white")
+        
+        i = 0
+        confirm = 0
+        for j in range(4):
+            if finalList.count(currentList[j]) >= 1:
+                plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, fill = "white")
+                if currentList[j] == finalList[j]:
+                    plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, fill = "red")
+                    confirm = confirm + 1
+
+                i = i + 1
+                    
+        if confirm == 4:
+            revele()
+                
 def creerCercle(num):      #mise en place des cercles colorés
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):
