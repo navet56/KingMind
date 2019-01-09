@@ -101,6 +101,11 @@ def nouvelessai():
         num = num+1
         choiceColor(num)    
         for i in range (4):
+            if currentList[i] == finalList[i]:
+                plateau.create_oval ((i+6)*40-15, 35+num*35-15, (i+6)*40+15, 35+num*35+15, fill = "white")
+            else:
+                plateau.create_oval ((i+6)*40-15, 35+num*35-15, (i+6)*40+15, 35+num*35+15, outline = "white")
+            
             print("Comparaison essai :")
             print(currentList[i] == finalList[i])
             
