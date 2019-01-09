@@ -42,10 +42,10 @@ def menu(fenetre):     #Création de la barre de menu avec ses boutons
     top=Menu(fenetre)
     fenetre.config(menu=top)
     J=Menu(top)
-    top.add_cascade(label='Jeu',menu=J,underline=0)
-    J.add_command(label='Nouvelle partie',command=jouer,underline=0)
-    J.add_command(label='Essai',command=nouvelessai,underline=0)
-    J.add_command(label='Montrer la combinaison',command=reveal,underline=0)
+    top.add_cascade(label='Jeu',menu=J,underline=0)#création de la cascade Jeu
+    J.add_command(label='Nouvelle partie',command=jouer,underline=0)#création du bouton Nouvelle partie
+    J.add_command(label='Essai',command=nouvelessai,underline=0)#etc
+    J.add_command(label='Montrer la combinaison',command=revele,underline=0)
     R=Menu(top)
     top.add_cascade(label='Regles',menu=R,underline=0)
     R.add_command(label='Presentation',command=presentation,underline=0)
@@ -63,13 +63,10 @@ def tirage():
                 # Tracé d'un rectangle et des cercles représentant la combinaison à rechercher
                 plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, outline = "black")
                 txt = plateau.create_text((i+1)*40, 25, text="?", font="Arial 16 ", fill="blue")
-        
-        
-def reveal():
+def revele():
         """ Pour révéler la suite recherchée... """ 
         for i in range (len(finalList)):
                 plateau.create_oval ((i+1)*40-15, 10, (i+1)*40+15, 40, fill = finalList[i])
-                
 def color(event):
         """ Gestion de l'événement "Clic gauche", sur un cercle, pour sélectionner une couleur """
     
@@ -93,11 +90,10 @@ def jouer():
         num = 1
         choiceColor(num)        # appelle la mise en place des cercles qui seront colorés par: color(event)
         tirage()
-
 def nouvelessai():
         global num
         num = num+1
-        choiceColor(num)    
+        creerCercle(num)    
         for i in range (4):
             if currentList[i] != finalList[i]:
                 plateau.create_oval ((i+6)*40-15, 35+num*35-15, (i+6)*40+15, 35+num*35+15, fill = "white")
@@ -105,7 +101,7 @@ def nouvelessai():
                 plateau.create_oval ((i+6)*40-15, 35+num*35-15, (i+6)*40+15, 35+num*35+15, outline = "white")
             
             
-def choiceColor(num):      #mise en place des cercles colorés
+def creerCercle(num):      #mise en place des cercles colorés
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):
                 # mise en place cercles
@@ -116,7 +112,6 @@ def quitter():       #créé la fenêtre  pour quitter la partie
         reponse=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") 
         if reponse:
                 fenetre.destroy() 
-                       
 ##### PROGRAMME PRINCIPAL #####
         
 fenetre= Tk()
@@ -130,6 +125,4 @@ menu(fenetre)
 #imageboite()
 # La méthode bind() permet de lier un événement avec une fonction
 plateau.bind('<Button-1>',color)
-
 fenetre.mainloop()
-
