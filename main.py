@@ -9,7 +9,7 @@ from tkinter.messagebox import  askokcancel
 
 colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']        # Liste des couleurs disponibles
 finalList = [0, 0, 0, 0]                                                  # Liste = La combinaison de couleurs à deviner
-currentList = [0, 0, 0, 0]                                                #Liste = Couleurs choisies par l joueur
+currentList = [0, 0, 0, 0]                                                # Liste = Couleurs choisies par l joueur
 cercleCoord = []                                                          # Liste, de listes  = coordonnées des 4 cercles, d'un essai   
 nbClic = 0                                                                # gestion du nombre de "clic gauche souris", utilisée pour sélectionner une couleur
 num = 1
@@ -88,7 +88,7 @@ def jouer():
         plateau.delete(ALL)     #supprime tout sur le plateau pour reinitialiser le plateau
         global num
         num = 1
-        choiceColor(num)        # appelle la mise en place des cercles qui seront colorés par: color(event)
+        creerCercle(num)        # appelle la mise en place des cercles qui seront colorés par: color(event)
         tirage()
 def nouvelessai():
         global num
@@ -119,7 +119,7 @@ fenetre.title('KingMind 0.2')
 plateau = Canvas(fenetre, height =700,width=400, bg='black' )
 plateau.pack(side =RIGHT, padx =0, pady =0)
 essaiBouton = Button(fenetre, text = ("Essai"), command =nouvelessai)        
-essaiBouton.pack(side=TOP, padx=0, pady=0)
+essaiBouton.pack(side=TOP, padx=0, pady=20)
 menu(fenetre)
 #bkg = PhotoImage(file='bkg.gif')
 #imageboite()
