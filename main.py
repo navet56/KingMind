@@ -22,7 +22,7 @@ def aPropos():         #Création de la section "à propos"
         text ='''KingMind
 Par Evan Diberder, Mael Le Boulicaut, Kilian Buan
 Tk version 8.4
-Python 2.7
+Python 3.7
 License GNU GPL V3
 Version Alpha 0.2''').pack(padx =15, pady =10)
 
@@ -117,9 +117,9 @@ def nouvelessai():
         creerCercle(num)
         for i in range(4):
             plateau.create_oval ((i+6)*40-15, 35+(num - 1)*35-15, (i+6)*40+15, 35+(num - 1)*35+15, outline = "white")
-        i = 0
-        confirme = 0
-        colorCount = [0, 0, 0, 0, 0, 0]
+        i = 0 #on remet i à 0 pour pouvoir continuer à l'utiliser
+        confirme = 0 #on initialise confime
+        colorCount = [0, 0, 0, 0, 0, 0] #on créé la liste qui permet de compter
         for j in range(4):
             colorCount[finalList[j]] = colorCount[finalList[j]] + 1
         for j in range(4):
