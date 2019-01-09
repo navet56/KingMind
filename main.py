@@ -17,7 +17,7 @@ def aPropos():         #Création de la section "à propos"
     msg =Toplevel() 
     Message(msg, width=200, aspect=200, justify=CENTER, 
         text ='''KingMind
-Par Evan Diberder, Mael Le Boulicaut, Kilian Buan et Julian Goumida
+Par Evan Diberder, Mael Le Boulicaut, Kilian Buan
 Tk version 8.4
 Python 2.7
 License GNU GPL V3
