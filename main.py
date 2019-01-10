@@ -161,7 +161,7 @@ can=Canvas(fenetre,height=750,width=200, bg='black') #espace de gauche utilisé 
 can.pack(side=LEFT) 
 selObject=can
 essaiBouton = Button(can, text = ("Essai"), command =nouvelessai)        
-essaiBouton.pack(side=TOP, padx=0, pady=360) 
+essaiBouton.pack(side=TOP, padx=0, pady=364) 
 menu(fenetre)
 bkg = PhotoImage(file='bkg.gif')
 theking = PhotoImage(file='theking.gif')
