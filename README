@@ -2,11 +2,11 @@ A LIRE POUR INSTALLER KINGMIND :
 
 -------Windows-----------------
 
-Installez Python 3.7 ici : https://www.python.org/ftp/python/3.7.2/python-3.7.2-amd64.exe
+Installez Python 3.X ici : https://www.python.org/ftp/python/3.7.2/python-3.7.2-amd64.exe
 
-Installez egalement Tkinter pour Python 3.7
+Installez egalement Tkinter pour Python 3.X
 
-Ensuite téléchargez IDLE qui est l'environnement de developpement officiel de Python. (IDLE Python 3.7)
+Ensuite téléchargez IDLE qui est l'environnement de developpement officiel de Python. (IDLE Python 3.X)
 
 Ouvrez main.py avec IDLE
 
@@ -20,9 +20,10 @@ Ouvrez un terminal dans le dossier KingMind et faite : ./Start.sh
 
 -----Mac-------------
 
-Installer Python 3
+Installer Python 3.X
 
 Comme sur Mac, il y a des incompatibilité avec Tkinter:
+
 Installer :https://www.activestate.com/products/activetcl/downloads/
 
 Ouvrez main.py avec IDLE
