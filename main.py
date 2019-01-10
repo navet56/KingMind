@@ -150,7 +150,7 @@ def quitter():       #créé la fenêtre  pour quitter la partie
         reponse=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") #on utilise la fonction askokcancel de la bibliothèque messagebox de tkinter
         if reponse:#si reponse (c'est a dire askokcancel) est active (donc qu'on a cliqué sur ok)
                 fenetre.destroy() #fermer la fenetre (la "detruire")
-
+		 exit()
 # Lancement du programme :
         
 fenetre= Tk()
