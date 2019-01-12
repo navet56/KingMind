@@ -26,7 +26,7 @@ Par Evan Diberder, Mael Le Boulicaut, Kilian Buan
 Tk version 8.4
 Python 3.7
 License GNU GPL V3
-Version Alpha 1.0''').pack(padx =15, pady =10)
+Version Alpha 1.1''').pack(padx =15, pady =10)
 
 def imageboite(): 
     plateau.create_image(200, 350, image=bkg)
@@ -154,7 +154,7 @@ def quitter():       #créé la fenêtre  pour quitter la partie
 # Lancement du programme :
         
 fenetre= Tk()
-fenetre.title('KingMind 1.0')
+fenetre.title('KingMind 1.1')
 plateau = Canvas(fenetre, height =750,width=400, bg='black' )
 plateau.pack(side =RIGHT, padx =0, pady =0)
 can=Canvas(fenetre,height=750,width=200, bg='black') #espace de gauche utilisé pour le bouton essai
