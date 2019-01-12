@@ -45,7 +45,7 @@ def deroule():         #Création de la section "déroule"
     Message(msg, width =200, aspect =100, justify =CENTER, 
         text ='''----Comment jouer à KingMind----
 Pour changer les couleurs, il faut cliquer sur les 4 cercles qui vous sont présentés.
-Pour voir si votre combinaison est la bonne, il faut cliquer sur le bouton essai en haut à gauche.
+Pour voir si votre combinaison est la bonne, il faut cliquer sur le bouton essai à gauche.
 A chaque essai, 4 points de couleur rouges ou blancs vous sont présentés :
 Les Rouges correspondent à une bonne couleur à la bonne place,
 les Blancs correspondent a une bonne couleur mais celle-ci est mal placée
