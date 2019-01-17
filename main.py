@@ -104,7 +104,6 @@ def color(event):
 def jouer():
         """ Gestion du jeu: le clic sur le bouton "essai", déclenche l'évaluation de la combinaison proposée"""
         # Mise en place du bouton "essai N°":
-        """ C'est à partir de l'ACTION sur ce bouton qu'il faut continuer le MOTEUR DU JEU """
         plateau.delete(ALL)     #supprime tout sur le plateau pour reinitialiser le plateau et supprimer l'image de la boite notamment
         global nbreEssai
         global nbClic
@@ -146,7 +145,7 @@ def indice():
                 j = j + 1#on incremente j
         if confirme == 4:#si confirme est de 4, c'est que les 4 couleurs sont égals
             messageGagner()#on lance la fonction de fin du jeu, de victoire"
-    if currentList == [0,0,0,0] or currentList == [1,1,1,1] or currentList == [2,2,2,2] or currentList == [3,3,3,3] or currentList == [4,4,4,4] or currentList == [5,5,5,5] or currentList == [6,6,6,6] or currentList == [7,7,7,7] or currentList == [8,8,8,8] or currentList == [9,9,9,9] :#évite la triche en mettant 4 fois la même couleur
+    if currentList == [0,0,0,0] or currentList == [1,1,1,1] or currentList == [2,2,2,2] or currentList == [3,3,3,3] or currentList == [4,4,4,4] or currentList == [5,5,5,5] or currentList == [6,6,6,6] or currentList == [7,7,7,7] or currentList == [8,8,8,8] or currentList == [9,9,9,9] :#évite la triche
         messageTriche()#on affiche la fin du jeu avec un message qui dit que l'on a triché
 
 def findujeu():
@@ -160,15 +159,15 @@ def findujeu():
 
 def messageGagner():
     findujeu()
-    plateau.create_text(150, 720, text="Bravo, tu as trouvé la bonne combinaison.", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
+    plateau.create_text(155, 720, text="Bravo, tu as trouvé la bonne combinaison.", font="Arial 14 ", fill="white") #on créé le texte qui dit fin de partie
 
 def messagePerdu():
     findujeu()
-    plateau.create_text(150, 720, text="Stop ! Tu as déjà beaucoup essayé, tu es visiblement trop mauvais, ne pert pas ton temps", font="Arial 7 ", fill="white") #on créé le texte qui dit fin de partie
+    plateau.create_text(200, 720, text="Tu as déjà beaucoup essayé, tu es visiblement trop mauvais, ne pert pas ton temps", font="Arial 7 ", fill="white") #on créé le texte qui dit fin de partie
 
 def messageTriche():
     findujeu()
-    plateau.create_text(150, 720, text="Tu as triché. C'est fini pour toi", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
+    plateau.create_text(160, 720, text="Tu as triché. C'est fini pour toi", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
 
 def messageAbandon():
     findujeu()
