@@ -117,20 +117,19 @@ def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles 
         indice()
 def indice():
     """Fonction permettant d'afficher les indices"""
-        confirme = 0#initialise
-        couleurbonne = 0
-        j = 0#permet de pas avoir les ronds d'indice à la même place que les ronds de la 
-        for i in range(4):
-            if currentList[i] in finalList:#si une couleur de la liste actuelle est dans la lkste finale
-                if currentList[i] == finalList[i] :#et si la couleur est egal à celle dans la liste finale à la meme pas (d'ou le [i])
-                    plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "red")#on place une boule rouge
-                    confirme = confirme + 1#on incrémente confirme de 1
-                    j = j + 1
-                if currentList[i] in finalList and currentList[i] != finalList[i]:#si une couleur de la liste actuelle est dans la lkste finale mais pasbonne place
-                    plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "white")#on place une boule blanche
-                    j = j + 1
-            if confirme == 4:#si confirme est de 4, c'est que les 4 couleurs sont égals
-                findujeu()#on lance la fonction de fin du jeu, de victoire"
+    confirme = 0 #initialisation de confirme
+    j = 0 #permet de pas avoir les ronds d'indice à la même place que les ronds de la 
+    for i in range(4):
+        if currentList[i] in finalList:#si une couleur de la liste actuelle est dans la lkste finale
+            if currentList[i] == finalList[i] :#et si la couleur est egal à celle dans la liste finale à la meme pas (d'ou le [i])
+                plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "red")#on place une boule rouge
+                confirme = confirme + 1#on incrémente confirme de 1
+                j = j + 1
+            if currentList[i] in finalList and currentList[i] != finalList[i]:#si une couleur de la liste actuelle est dans la lkste finale mais pasbonne place
+                plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "white")#on place une boule blanche
+                j = j + 1
+        if confirme == 4:#si confirme est de 4, c'est que les 4 couleurs sont égals
+            findujeu()#on lance la fonction de fin du jeu, de victoire"
 def findujeu():
     """ Pour révéler la suite recherchée... """ 
     global jouant
