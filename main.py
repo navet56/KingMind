@@ -133,10 +133,10 @@ def indice():
             if currentList[i] == finalList[i] :#et si la couleur est egal à celle dans la liste finale à la meme pas (d'ou le [i])
                 plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "red")#on place une boule rouge
                 confirme = confirme + 1#on incrémente confirme de 1
-                j = j + 1
+                j = j + 1#on incremente j
             if currentList[i] in finalList and currentList[i] != finalList[i]:#si une couleur de la liste actuelle est dans la liste finale mais pasbonne place
                 plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "white")#on place une boule blanche
-                j = j + 1
+                j = j + 1#on incremente j
         if confirme == 4:#si confirme est de 4, c'est que les 4 couleurs sont égals
             findujeu()#on lance la fonction de fin du jeu, de victoire"
 def findujeu():
@@ -157,7 +157,8 @@ def quitter():       #créé la fenêtre  pour quitter la partie
         reponse=askokcancel('KingMind',"Tu veux vraiment quitter ? On fait pas la belle ?") #on utilise la fonction askokcancel de la bibliothèque messagebox de tkinter
         if reponse:#si reponse (c'est a dire askokcancel) est active (donc qu'on a cliqué sur ok)
                 fenetre.destroy() #fermer la fenetre (la "detruire")
-                exit()
+                exit()#on quitte la console
+
 # Lancement du programme :
         
 fenetre= Tk()#bibliothèque tkinter permet de faire des fenetres graphiques
@@ -167,7 +168,7 @@ plateau.pack(side =RIGHT, padx =0, pady =0)
 can=Canvas(fenetre,height=750,width=200, bg='black') #espace de gauche utilisé pour le bouton essai
 can.pack(side=LEFT) 
 selObject=can
-essaiBouton = Button(can, text = ("Essai"), command =nouvelessai)        
+essaiBouton = Button(can, text = ("Essai"), command =nouvelessai) #définition du boutton essai
 essaiBouton.pack(side=TOP, padx=0, pady=364) 
 menu(fenetre)
 bkg = PhotoImage(file='bkg.gif')
