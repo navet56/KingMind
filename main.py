@@ -116,16 +116,17 @@ def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles 
         creerCercle(nbreEssai)
         indice()
 def indice():
-        confirme = 0
+    """Fonction permettant d'afficher les indices"""
+        confirme = 0#initialise
         couleurbonne = 0
-        j = 0
+        j = 0#permet de pas avoir les ronds d'indice à la même place que les ronds de la 
         for i in range(4):
-            if currentList[i] in finalList:
-                if currentList[i] == finalList[i] :
+            if currentList[i] in finalList:#si une couleur de la liste actuelle est dans la lkste finale
+                if currentList[i] == finalList[i] :#et si la couleur est egal à celle dans la liste finale à la meme pas (d'ou le [i])
                     plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "red")#on place une boule rouge
                     confirme = confirme + 1#on incrémente confirme de 1
                     j = j + 1
-                if currentList[i] in finalList and currentList[i] != finalList[i] and confirme < 1:
+                if currentList[i] in finalList and currentList[i] != finalList[i]:#si une couleur de la liste actuelle est dans la lkste finale mais pasbonne place
                     plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "white")#on place une boule blanche
                     j = j + 1
             if confirme == 4:#si confirme est de 4, c'est que les 4 couleurs sont égals
@@ -136,9 +137,9 @@ def findujeu():
     if jouant == True:
         for i in range (len(finalList)):
             plateau.create_oval ((i+1)*40-15, 60, (i+1)*40+15, 90, fill = colorList[finalList[i]]) #on affiche la combinaison finale
-        #jouant = False #on désactive jouant pour ne plus que les actions marchent
-        #imageking() #on affiche l'image de fin
-        #plateau.create_text(150, 720, text="La partie est terminée.", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
+        jouant = False #on désactive jouant pour ne plus que les actions marchent
+        imageking() #on affiche l'image de fin
+        plateau.create_text(150, 720, text="La partie est terminée.", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
 def creerCercle(nbreEssai):      #mise en place des cercles colorés
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):# mise en place des cerlces
@@ -151,8 +152,8 @@ def quitter():       #créé la fenêtre  pour quitter la partie
                 exit()
 # Lancement du programme :
         
-fenetre= Tk()
-fenetre.title('KingMind 1.2')
+fenetre= Tk()#bibliothèque tkinter permet de faire des fenetres graphiques
+fenetre.title('KingMind 1.2')# titre de la fenetre
 plateau = Canvas(fenetre, height =750,width=400, bg='black' )
 plateau.pack(side =RIGHT, padx =0, pady =0)
 can=Canvas(fenetre,height=750,width=200, bg='black') #espace de gauche utilisé pour le bouton essai
