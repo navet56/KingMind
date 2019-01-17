@@ -26,7 +26,7 @@ def aPropos():         #Création de la section "à propos"
 Par Evan Diberder, Mael Le Boulicaut, Kilian Buan
 Tk version 8.4
 Python 3.7
-Version 1.2''').pack(padx =15, pady =10)
+Version 1.3''').pack(padx =15, pady =10)
 
 def imageboite():
     plateau.create_image(200, 350, image=bkg)
@@ -121,7 +121,7 @@ def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles 
             findujeu()
         creerCercle(nbreEssai)
         indice()#permet la comparaison entre les 2 listes de couleurs
-        nbClicparessai = 0
+        nbClicparessai = 0 #
 
 def indice():
     """Fonction permettant d'afficher les indices"""
@@ -134,7 +134,7 @@ def indice():
                 plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "red")#on place une boule rouge
                 confirme = confirme + 1#on incrémente confirme de 1
                 j = j + 1
-            if currentList[i] in finalList and currentList[i] != finalList[i]:#si une couleur de la liste actuelle est dans la lkste finale mais pasbonne place
+            if currentList[i] in finalList and currentList[i] != finalList[i]:#si une couleur de la liste actuelle est dans la liste finale mais pasbonne place
                 plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "white")#on place une boule blanche
                 j = j + 1
         if confirme == 4:#si confirme est de 4, c'est que les 4 couleurs sont égals
@@ -161,7 +161,7 @@ def quitter():       #créé la fenêtre  pour quitter la partie
 # Lancement du programme :
         
 fenetre= Tk()#bibliothèque tkinter permet de faire des fenetres graphiques
-fenetre.title('KingMind 1.2')# titre de la fenetre
+fenetre.title('KingMind 1.3')# titre de la fenetre
 plateau = Canvas(fenetre, height =750,width=400, bg='black' )
 plateau.pack(side =RIGHT, padx =0, pady =0)
 can=Canvas(fenetre,height=750,width=200, bg='black') #espace de gauche utilisé pour le bouton essai
