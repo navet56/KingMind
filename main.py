@@ -14,6 +14,7 @@ currentList = [0, 0, 0, 0]                                                # List
 cercleCoord = []                                                          # Liste, de listes  = coordonnées des 4 cercles, d'un essai   
 nbClic = 0                                                                # gestion du nombre de "clic gauche souris", utilisée pour sélectionner une couleur
 nbreEssai = 1
+nbClicparessai = 0
 jouant = False
 
 #Fonctions d'interfaces et de graphismes :
@@ -81,9 +82,9 @@ def tirage():
 def color(event):
     if jouant:
         """ Gestion de l'événement "Clic gauche", sur un cercle, pour sélectionner une couleur """
-    
+        global nbClicparessai
         global nbClic
-        if nbClic >= 8: nbClic = 0
+        if nbClic >=9: nbClic = 0
         # position du pointeur de la souris:
         X = event.x
         Y = event.y
@@ -92,35 +93,43 @@ def color(event):
                 if (cercleCoord [i][0] <= X <= cercleCoord [i][2]) and (cercleCoord [i][1] <= Y <= cercleCoord [i][3]):
                         plateau.create_oval (cercleCoord[i], fill = colorList[nbClic])
                         currentList[i] = nbClic     #permet la coloration des cercles en fonction du clic
-        nbClic = nbClic+1        
+        nbClic = nbClic+1
+        nbClicparessai = nbClicparessai + 1
 def jouer():
         """ Gestion du jeu: le clic sur le bouton "essai", déclenche l'évaluation de la combinaison proposée"""
         # Mise en place du bouton "essai N°":
         """ C'est à partir de l'ACTION sur ce bouton qu'il faut continuer le MOTEUR DU JEU """
         plateau.delete(ALL)     #supprime tout sur le plateau pour reinitialiser le plateau et supprimer l'image de la boite notamment
         global nbreEssai
+        global nbClic
+        global nbClicparessai
+        nbClic = 0
         nbreEssai = 1					#cette variable va nous servir pour créer les 4 cercles
+        nbClicparessai = 0
         creerCercle(nbreEssai)        # appelle la mise en place des cercles qui seront colorés par: color(event)
         tirage()				#on éffectue le choix aléatoire et on place les points d'interrogations
         global jouant
         jouant = True			#jouant est un booleen permettant entre autre de bloquer le bouton essai si nouvelle partie n'est pas actif, la on le met actif car nouvelle partie est actionné
         plateau.create_text(90, 32, text="Combinaison", font="Arial 14 ", fill="white") #on créé le texte pour indiquer à quoi sert cette colonne, ici :la colonne pour entrer les combinaisons
         plateau.create_text(290, 32, text="Indice", font="Arial 14 ", fill="white") #on créé le texte pour indiquer à quoi sert cette colonne, ici ; la colonne qui donne les indices
-
 def nouvelessai():              #fonction du bouton Essai, qui créer 4 cercles en dessous de ceux d'avant et compare avec la cominaison magique
-    if jouant == True:
+    global nbClicparessai
+    if jouant == True and nbClicparessai >= 4:
         global nbreEssai
         nbreEssai = nbreEssai+1
         if nbreEssai > 10:
             findujeu()
         creerCercle(nbreEssai)
-        indice()
+        indice()#permet la comparaison entre les 2 listes de couleurs
+        nbClicparessai = 0
+
 def indice():
     """Fonction permettant d'afficher les indices"""
+    global nbClic
     confirme = 0 #initialisation de confirme
     j = 0 #permet de pas avoir les ronds d'indice à la même place que les ronds de la 
     for i in range(4):
-        if currentList[i] in finalList:#si une couleur de la liste actuelle est dans la lkste finale
+        if currentList[i] in finalList :#si une couleur de la liste actuelle est dans la lkste finale
             if currentList[i] == finalList[i] :#et si la couleur est egal à celle dans la liste finale à la meme pas (d'ou le [i])
                 plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "red")#on place une boule rouge
                 confirme = confirme + 1#on incrémente confirme de 1
