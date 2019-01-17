@@ -7,8 +7,8 @@ from tkinter.messagebox import  askokcancel
 
 # Variables :
 
-colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple','white','grey']        # Liste des couleurs disponibles
-idColorList = [0, 1, 2, 3, 4, 5, 6, 7]										  # Liste qui assigne des chiffres aux couleurs
+colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple','white','grey','pink']        # Liste des couleurs disponibles
+idColorList = [0, 1, 2, 3, 4, 5, 6, 7, 8]										  # Liste qui assigne des chiffres aux couleurs
 finalList = [0,0,0,0]                                                  # Liste de la combinaison de couleurs à deviner, généré par l'ordinateur
 currentList = [0, 0, 0, 0]                                                # Liste des couleurs choisies par le joueur
 cercleCoord = []                                                          # Liste, de listes  = coordonnées des 4 cercles, d'un essai   
@@ -72,7 +72,7 @@ def menu(fenetre):     #Création de la barre de menu avec ses boutons
 def tirage():
         """ Tirage de la combinaison de couleur à deviner + Mise en forme: suite de 5 couleurs à deviner """
         # Tracé d'un rectangle et des cercles représentant la combinaison à rechercher
-        idColorList = [0, 1, 2, 3, 4, 5, 6, 7]										  # Liste qui assigne des chiffres aux couleurs
+        idColorList = [0, 1, 2, 3, 4, 5, 6, 7, 8]										  # Liste qui assigne des chiffres aux couleurs
         plateau.create_rectangle(10, 58, 190, 92, outline='white',fill='black') #création du rectangle autour de des 4 ronds de la combinaison finale
         for i in range (4):
                 finalList[i] = choice(idColorList)        # tirage au sort d'une couleur dans la liste: idColorList
@@ -125,7 +125,7 @@ def indice():
                     plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "red")#on place une boule rouge
                     confirme = confirme + 1#on incrémente confirme de 1
                     j = j + 1
-                if currentList[i] in finalList and currentList[i] != finalList[i]:
+                if currentList[i] in finalList and currentList[i] != finalList[i] and confirme < 1:
                     plateau.create_oval ((j+6)*40-15, (nbreEssai-1)*35+70, (j+6)*40+15, (nbreEssai - 1)*35+100, fill = "white")#on place une boule blanche
                     j = j + 1
             if confirme == 4:#si confirme est de 4, c'est que les 4 couleurs sont égals
@@ -136,9 +136,9 @@ def findujeu():
     if jouant == True:
         for i in range (len(finalList)):
             plateau.create_oval ((i+1)*40-15, 60, (i+1)*40+15, 90, fill = colorList[finalList[i]]) #on affiche la combinaison finale
-        jouant = False #on désactive jouant pour ne plus que les actions marchent
-        imageking() #on affiche l'image de fin
-        plateau.create_text(150, 720, text="La partie est terminée.", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
+        #jouant = False #on désactive jouant pour ne plus que les actions marchent
+        #imageking() #on affiche l'image de fin
+        #plateau.create_text(150, 720, text="La partie est terminée.", font="Arial 16 ", fill="white") #on créé le texte qui dit fin de partie
 def creerCercle(nbreEssai):      #mise en place des cercles colorés
         """ Mise en place des cercles de la proposition, avant leur coloration"""
         for i in range (4):# mise en place des cerlces
